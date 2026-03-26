@@ -1,4 +1,5 @@
 import { BasketPage } from '../pageObjects/basketPage';
+import { CreateAddressPage } from '../pageObjects/createAddressPage';
 import { DeliveryMethodPage } from '../pageObjects/deliveryMethodPage';
 import { HomePage } from '../pageObjects/HomePage';
 import { LoginPage } from '../pageObjects/loginPage';
@@ -6,6 +7,7 @@ import { OrderCompletionPage } from '../pageObjects/orderCompletionPage';
 import { OrderSummaryPage } from '../pageObjects/orderSummaryPage';
 import { PaymentOptionsPage } from '../pageObjects/paymentOptionsPage';
 import { RegistrationPage } from '../pageObjects/registrationPage';
+import { SavedAddressesPage } from '../pageObjects/savedAddressesPage';
 import { SelectAddressPage } from '../pageObjects/selectAddressPage';
 
 describe('Juice-shop scenarios', () => {
@@ -171,7 +173,7 @@ describe('Juice-shop scenarios', () => {
     });
 
     // Create scenario - Buy Girlie T-shirt
-    it.only('Buy Girlie T-shirt', () => {
+    it('Buy Girlie T-shirt', () => {
       // Click on search icon
       HomePage.searchIcon.click();
       // Search for Girlie
@@ -207,15 +209,41 @@ describe('Juice-shop scenarios', () => {
     });
 
     // Create scenario - Add address
-    // Click on Account
-    // Click on Orders & Payment
-    // Click on My saved addresses
-    // Create page object - SavedAddressesPage
-    // Click on Add New Address
-    // Create page object - CreateAddressPage
-    // Fill in the necessary information
-    // Click Submit button
-    // Validate that previously added address is visible
+    it.only('Add address', () => {
+      // Click on Account
+      HomePage.accountButton.click();
+      // Click on Orders & Payment
+      HomePage.ordersAndPaymentButton.click();
+      // Click on My saved addresses
+      HomePage.mySavedAddressesButton.click();
+      // Create page object - SavedAddressesPage
+      // Click on Add New Address
+      SavedAddressesPage.addNewAddressButton.click();
+      // Create page object - CreateAddressPage
+      // Fill in the necessary information
+      const testAddressData = {
+        country: 'Latvia',
+        fullName: 'John Doe',
+        number: '12345678',
+        zip: 'LV-3301',
+        address: 'Somewhere over there',
+        city: 'Kuldiga',
+        state: 'IDK',
+      }
+      CreateAddressPage.countryField.type(testAddressData.country);
+      CreateAddressPage.nameField.type(testAddressData.fullName);
+      CreateAddressPage.mobileNumberField.type(testAddressData.number);
+      CreateAddressPage.zipCodeField.type(testAddressData.zip);
+      CreateAddressPage.addressField.type(testAddressData.address);
+      CreateAddressPage.cityField.type(testAddressData.city);
+      CreateAddressPage.stateField.type(testAddressData.state);
+      // Click Submit button
+      CreateAddressPage.submitButton.click();
+      // Validate that previously added address is visible
+      CreateAddressPage.savedAddress.should('contain.text', testAddressData.fullName);
+      CreateAddressPage.savedAddress.should('contain.text', testAddressData.address + ', ' + testAddressData.city + ', ' + testAddressData.state + ', ' + testAddressData.zip);
+      CreateAddressPage.savedAddress.should('contain.text', testAddressData.country);
+    });
 
     // Create scenario - Add payment option
     // Click on Account

@@ -68,7 +68,16 @@ export class HomePage extends BasePage {
   static get itemsPerPageDropdown() {
     return cy.get('.mat-mdc-paginator-page-size-select');
   }
+
   static get itemsPerPageSelection() {
     return cy.get('#mat-select-0-panel');
+  }
+
+  static get addToBasketButton() {
+    return cy.get("button[aria-label='Add to Basket']");
+  }
+
+  static get basketButton() {
+    return cy.get("button[aria-label='Show the shopping cart']");
   }
 }

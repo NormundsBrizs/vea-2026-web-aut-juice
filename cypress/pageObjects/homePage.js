@@ -66,6 +66,9 @@ export class HomePage extends BasePage {
   }
 
   static get itemsPerPageDropdown() {
-    return cy.get('mat-select[aria-label="Items per page:"]');
+    return cy.get('.mat-mdc-paginator-page-size-select');
+  }
+  static get itemsPerPageSelection() {
+    return cy.get('#mat-select-0-panel');
   }
 }

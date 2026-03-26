@@ -12,4 +12,60 @@ export class HomePage extends BasePage {
   static get meWantItButton() {
     return cy.get("[aria-label='dismiss cookie message']");
   }
+
+  static get accountButton() {
+    return cy.get('#navbarAccount');
+  }
+
+  static get loginButton() {
+    return cy.get('#navbarLoginButton');
+  }
+
+  static get userProfileButton() {
+    return cy.get("[aria-label='Go to user profile").find("span");
+  }
+
+  static get searchIcon() {
+    return cy.get('#searchQuery');
+  }
+
+  static get searchField() {
+    return cy.get('#searchQuery input');
+  }
+
+  static get productNames() {
+    return cy.get('[class="mat-grid-tile ng-star-inserted"]').find('[class="info-box"]');
+  }
+
+  static get productBoxInfo() {
+    return cy.get('mat-dialog-content .details-row');
+  }
+
+  static get closeButton() {
+    return cy.get('.close-dialog');
+  }
+
+  static get reviewsDropdown() {
+    return cy.get('.mat-content');
+  }
+
+  static get reviews() {
+    return cy.get('.review-row');
+  }
+
+  static get reviewField() {
+    return cy.get('#mat-input-2');
+  }
+
+  static get reviewSubmit() {
+    return cy.get('#submitButton');
+  }
+
+  static get cards() {
+    return cy.get('mat-card');
+  }
+
+  static get itemsPerPageDropdown() {
+    return cy.get('mat-select[aria-label="Items per page:"]');
+  }
 }
